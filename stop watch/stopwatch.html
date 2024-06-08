@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH</title>
+    <link rel="stylesheet" href="stowatch.css">
+    
+    
+</head>
+<body onload="stowatch()">
+
+<div class="container">
+    
+    <div class="circle">
+        
+    <div class="time">
+
+<div class="hour"></div>
+<div class="minitues"></div>
+<div class="second"></div>
+<div class="counter"></div>
+
+
+
+<form id="stowatch()">
+    <input type="button" class="butt" value="Stop" onclick="stp()">
+    <input type="button" class="butt" value="Restart" onclick="rest()">
+    <input type="button" class="butt" value="Start" onclick="str()">
+</form>
+</div>
+</div>
+</div>
+    
+   
+<script type="text/javascript">
+    let count=0;
+    let second=0;
+    let minitues=0;
+    let hour=0;
+    let starttimer;
+
+   function stowatch(){
+    let fcount=(count<10)?"0"+count:count;
+    let fsecond=(second<10)?"0"+second:second;
+    let fminitues=(minitues<10)?"0"+minitues:minitues;
+    let fhour=(hour<10)?"0"+hour:hour;
+        document.getElementsByClassName("counter")[0].innerHTML=fcount;
+    document.getElementsByClassName("second")[0].innerHTML=fsecond;
+    document.getElementsByClassName("minitues")[0].innerHTML=fminitues;
+    document.getElementsByClassName("hour")[0].innerHTML=fhour;
+       
+       if(count<100){
+        count++;
+       }
+       else{
+        count=0;
+        second++;
+        if(second==61){
+            second=0;
+            minitues++
+            if(minitues==61){
+                minitues=0;
+                hour++;
+            }
+        }
+
+       }
+     
+   }
+  
+   function rest(){
+    count=0;
+     second=0;
+    minitues=0;
+    hour=0;
+   }
+   function stp(){
+    clearInterval(starttimer);
+   }
+   function str(){
+   starttimer= setInterval(stowatch,10);
+   }
+</script>
+</body>
+</html>
